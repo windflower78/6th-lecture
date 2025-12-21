@@ -107,29 +107,71 @@ class TestAddition:
         # Assert
         assert result == pytest.approx(expected)
 
+    def test_add_raises_invalid_input_when_a_out_of_range(self):
+        calc = Calculator()
+        with pytest.raises(InvalidInputException):
+            calc.add(1_000_001, 0)
 
+    def test_add_raises_invalid_input_when_b_out_of_range(self):
+        calc = Calculator()
+        with pytest.raises(InvalidInputException):
+            calc.add(0, 1_000_001)
+            
 class TestSubtraction:
     """Tests for the subtract method."""
 
     def test_subtract_positive_numbers(self):
         """Test subtracting positive numbers."""
-        # TODO: Implement
+        calc = Calculator()
+        assert calc.subtract(8, 3) == 5
 
+    def test_subtract_raises_invalid_input_when_a_out_of_range(self):
+        calc = Calculator()
+        with pytest.raises(InvalidInputException):
+            calc.subtract(1_000_001, 0)
+
+    def test_subtract_raises_invalid_input_when_b_out_of_range(self):
+        calc = Calculator()
+        with pytest.raises(InvalidInputException):
+            calc.subtract(0, -1_000_001)
 
 class TestMultiplication:
     """Tests for the multiply method."""
 
     def test_multiply_positive_numbers(self):
         """Test multiplying positive numbers."""
-        # TODO: Implement
+        calc = Calculator()
+        assert calc.multiply(6, 7) == 42
 
+    def test_multiply_raises_invalid_input_when_a_out_of_range(self):
+        calc = Calculator()
+        with pytest.raises(InvalidInputException):
+            calc.multiply(1_000_001, 1)
+
+    def test_multiply_raises_invalid_input_when_b_out_of_range(self):
+        calc = Calculator()
+        with pytest.raises(InvalidInputException):
+            calc.multiply(0, -1_000_001)
 
 class TestDivision:
     """Tests for the divide method."""
 
     def test_divide_positive_numbers(self):
         """Test dividing positive numbers."""
-        # TODO: Implement
+        calc = Calculator()
+        assert calc.divide(9, 3) == 3
 
+    def test_divide_by_zero_raises_value_error(self):
+        calc = Calculator()
+        with pytest.raises(ValueError):
+            calc.divide(1, 0)
 
+    def test_divide_raises_invalid_input_when_a_out_of_range(self):
+        calc = Calculator()
+        with pytest.raises(InvalidInputException):
+            calc.divide(1_000_001, 1)
 
+    def test_divide_raises_invalid_input_when_b_out_of_range(self):
+        calc = Calculator()
+        with pytest.raises(InvalidInputException):
+            calc.divide(1, 1_000_001)
